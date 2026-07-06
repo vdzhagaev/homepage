@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vyacheslav Dzhagaev — Backend Engineer CV</title>
+<style>
+  :root {
+    --paper: #fbfbfa;
+    --ink: #17181a;
+    --ash: #5f6266;
+    --ash-soft: #85888d;
+    --rule: #e5e4e1;
+    --rule-soft: #efeeec;
+    --accent: #a52834;
+    --accent-ink: #8f2029;
+    --chip: #f1f0ed;
+    --serif: "Charter", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #141517;
+      --ink: #e9e8e5;
+      --ash: #a3a5a9;
+      --ash-soft: #7e8186;
+      --rule: #2b2c2f;
+      --rule-soft: #212325;
+      --accent: #d8636d;
+      --accent-ink: #e07a83;
+      --chip: #1e2022;
+    }
+  }
+  :root[data-theme="light"] {
+    --paper: #fbfbfa; --ink: #17181a; --ash: #5f6266; --ash-soft: #85888d;
+    --rule: #e5e4e1; --rule-soft: #efeeec; --accent: #a52834; --accent-ink: #8f2029; --chip: #f1f0ed;
+  }
+  :root[data-theme="dark"] {
+    --paper: #141517; --ink: #e9e8e5; --ash: #a3a5a9; --ash-soft: #7e8186;
+    --rule: #2b2c2f; --rule-soft: #212325; --accent: #d8636d; --accent-ink: #e07a83; --chip: #1e2022;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .sheet {
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 44px 60px 72px;
+  }
+
+  /* ---------- Site bar ---------- */
+  .sitebar { position: sticky; top: 0; z-index: 20; background: var(--paper); border-bottom: 1px solid var(--rule); }
+  .sitebar-inner { max-width: 840px; margin: 0 auto; padding: 12px 60px; display: flex; align-items: center; gap: 20px; font-family: var(--mono); font-size: 13px; }
+  .sitebar .brand { font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: .04em; }
+  .sitebar .brand span { color: var(--accent); }
+  .sitebar nav { display: flex; gap: 18px; }
+  .sitebar a.navlink { color: var(--ash); text-decoration: none; }
+  .sitebar a.navlink:hover, .sitebar a.navlink[aria-current="page"] { color: var(--accent-ink); }
+  .sitebar .spacer { flex: 1; }
+  .theme-toggle { background: none; border: 1px solid var(--rule); color: var(--ash); width: 30px; height: 30px; border-radius: 6px; cursor: pointer; font-size: 14px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent-ink); }
+
+  /* ---------- Header ---------- */
+  header { border-bottom: 1px solid var(--rule); padding-bottom: 26px; }
+  .name {
+    font-family: var(--serif);
+    font-size: 40px;
+    line-height: 1.05;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .name .surname { color: var(--accent); }
+  .role {
+    font-size: 15px;
+    color: var(--ash);
+    margin: 10px 0 0;
+    font-weight: 500;
+    letter-spacing: 0.005em;
+  }
+  .contact {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    padding: 0;
+    margin: 20px 0 0;
+    font-size: 13px;
+    font-family: var(--mono);
+    color: var(--ash);
+  }
+  .contact li { display: flex; align-items: center; gap: 7px; }
+  .contact .dot { color: var(--accent); font-weight: 700; }
+  .contact a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .contact a:hover { border-color: var(--accent); color: var(--accent-ink); }
+
+  /* ---------- Sections ---------- */
+  section { margin-top: 30px; }
+  .eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 0 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .summary { margin: 0; max-width: 68ch; color: var(--ink); }
+  .summary strong { font-weight: 650; }
+
+  /* ---------- Skills ---------- */
+  .skills { display: grid; grid-template-columns: max-content 1fr; gap: 11px 22px; }
+  .skills dt {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    color: var(--ash-soft);
+    padding-top: 1px;
+  }
+  .skills dd { margin: 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    background: var(--chip);
+    color: var(--ink);
+    padding: 2px 9px;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+  }
+  .tag.lead { border-color: var(--accent); color: var(--accent-ink); }
+
+  /* ---------- Experience ---------- */
+  .job { margin-bottom: 24px; }
+  .job:last-child { margin-bottom: 0; }
+  .job-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .job-title { font-size: 16px; font-weight: 650; margin: 0; }
+  .job-title .company { color: var(--accent-ink); }
+  .job-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ash-soft);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .job-sub { font-size: 13px; color: var(--ash); margin: 2px 0 0; }
+  ul.bullets { margin: 11px 0 0; padding: 0; list-style: none; }
+  ul.bullets li {
+    position: relative;
+    padding-left: 18px;
+    margin: 6px 0;
+    max-width: 74ch;
+  }
+  ul.bullets li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 9px;
+    width: 5px; height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  ul.bullets code, .summary code {
+    font-family: var(--mono);
+    font-size: 0.86em;
+    background: var(--rule-soft);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  /* ---------- Projects ---------- */
+  .proj { margin-bottom: 18px; }
+  .proj:last-child { margin-bottom: 0; }
+  .proj-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .proj-name { font-weight: 650; font-size: 15px; }
+  .proj-stack {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent-ink);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .proj-link {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ash-soft);
+    margin-left: auto;
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+  }
+  .proj-link:hover { color: var(--accent-ink); border-color: var(--accent); }
+  .proj p { margin: 6px 0 0; color: var(--ash); max-width: 76ch; font-size: 14.5px; }
+
+  /* ---------- Two-column tail ---------- */
+  .tail { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  .tail .item { margin-bottom: 12px; }
+  .tail .item:last-child { margin-bottom: 0; }
+  .tail .deg { font-weight: 600; font-size: 14.5px; }
+  .tail .deg-sub { font-size: 13px; color: var(--ash); margin-top: 1px; }
+  .lang-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 5px 0; border-bottom: 1px dashed var(--rule); }
+  .lang-row:last-child { border-bottom: none; }
+  .lang-name { font-weight: 600; font-size: 14px; }
+  .lang-lvl { font-family: var(--mono); font-size: 12px; color: var(--ash-soft); }
+  .note { font-size: 12px; color: var(--ash-soft); font-style: italic; }
+
+  @media (max-width: 620px) {
+    .sheet { padding: 32px 22px 52px; }
+    .sitebar-inner { padding: 10px 20px; gap: 14px; }
+    .name { font-size: 32px; }
+    .skills { grid-template-columns: 1fr; gap: 4px 0; }
+    .skills dt { padding-top: 12px; }
+    .tail { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  @media print {
+    .sitebar { display: none !important; }
+    :root {
+      --paper: #ffffff; --ink: #17181a; --ash: #4a4d51; --ash-soft: #6a6d72;
+      --rule: #d9d8d5; --rule-soft: #efeeec; --accent: #97202b; --accent-ink: #8f2029; --chip: #f2f1ee;
+    }
+    body { font-size: 10.5pt; }
+    .sheet { max-width: none; padding: 0; }
+    section { margin-top: 20px; }
+    .job, .proj { page-break-inside: avoid; }
+    a { border: none !important; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+  <div class="sitebar">
+    <div class="sitebar-inner">
+      <a class="brand" href="./">V<span>D</span></a>
+      <nav>
+        <a class="navlink" href="./">Home</a>
+        <a class="navlink" href="cv.html" aria-current="page">CV</a>
+        <a class="navlink" href="cv.pdf">PDF</a>
+      </nav>
+      <span class="spacer"></span>
+      <button class="theme-toggle" type="button" aria-label="Toggle colour theme" title="Toggle theme">◐</button>
+    </div>
+  </div>
+
+  <div class="sheet">
+    <header>
+      <h1 class="name">Vyacheslav <span class="surname">Dzhagaev</span></h1>
+      <p class="role">Backend Engineer — Node.js / NestJS &nbsp;·&nbsp; Growing in Go</p>
+      <ul class="contact">
+        <li><span class="dot">◆</span> Volgograd, Russia</li>
+        <li><span class="dot">◆</span> Open to relocation — Serbia · Cyprus · Netherlands · Georgia</li>
+        <li><span class="dot">◆</span> <a href="mailto:slava.dzhagaev@proton.me">slava.dzhagaev@proton.me</a></li>
+        <li><span class="dot">◆</span> <a href="https://vdzhagaev.tech">vdzhagaev.tech</a></li>
+        <li><span class="dot">◆</span> <a href="https://github.com/vdzhagaev">github.com/vdzhagaev</a></li>
+      </ul>
+    </header>
+
+    <section>
+      <h2 class="eyebrow">Summary</h2>
+      <p class="summary">Backend-focused full-stack engineer with <strong>3+ years of commercial experience</strong> building and maintaining production web applications with <strong>NestJS (Node.js / TypeScript)</strong> and <strong>Angular</strong>. Comfortable owning features end-to-end — data model, service layer, background processing, and delivery through Docker&nbsp;+&nbsp;CI. Led a service migration to Clean Architecture and shipped queue-based and browser-automation features now running in production. Actively specialising in <strong>Go</strong>, building self-hosted, API-first services in my own projects. Looking for a backend role in the EU with relocation support.</p>
+    </section>
+
+    <section>
+      <h2 class="eyebrow">Skills</h2>
+      <dl class="skills">
+        <dt>Core</dt>
+        <dd class="tags">
+          <span class="tag lead">TypeScript</span>
+          <span class="tag lead">NestJS</span>
+          <span class="tag lead">Node.js</span>
+          <span class="tag lead">Go</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">PHP</span>
+          <span class="tag">C# / .NET</span>
+          <span class="tag">SQL</span>
+        </dd>
+        <dt>Backend</dt>
+        <dd class="tags">
+          <span class="tag">REST APIs</span>
+          <span class="tag">Message queues</span>
+          <span class="tag">Background workers</span>
+          <span class="tag">Headless automation</span>
+          <span class="tag">Clean Architecture</span>
+          <span class="tag">DDD · CQRS</span>
+        </dd>
+        <dt>Go stack</dt>
+        <dd class="tags">
+          <span class="tag">chi</span>
+          <span class="tag">pgx</span>
+          <span class="tag">slog</span>
+          <span class="tag">Schedulers</span>
+          <span class="tag">Graceful shutdown</span>
+        </dd>
+        <dt>Frontend</dt>
+        <dd class="tags">
+          <span class="tag">Angular</span>
+          <span class="tag">RxJS</span>
+          <span class="tag">Svelte</span>
+        </dd>
+        <dt>Data</dt>
+        <dd class="tags">
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">SQLite</span>
+          <span class="tag">Migrations</span>
+        </dd>
+        <dt>Infra</dt>
+        <dd class="tags">
+          <span class="tag">Docker</span>
+          <span class="tag">docker-compose</span>
+          <span class="tag">Bitbucket Pipelines</span>
+          <span class="tag">Monorepo</span>
+          <span class="tag">Linux</span>
+          <span class="tag">Git</span>
+        </dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2 class="eyebrow">Experience</h2>
+
+      <div class="job">
+        <div class="job-head">
+          <h3 class="job-title">Full-Stack Engineer, <span class="company">Comrade Digital Marketing Agency</span></h3>
+          <span class="job-meta">Mar 2023 — Present</span>
+        </div>
+        <p class="job-sub">Remote (Chicago, USA)</p>
+        <ul class="bullets">
+          <li>Core developer on a production client platform built as a <strong>NestJS monorepo</strong> (multiple apps + shared libraries), delivering backend features end-to-end.</li>
+          <li>Led the migration of the main backend service to <strong>Clean Architecture</strong>, improving modularity, boundaries, and testability.</li>
+          <li>Designed and shipped <strong>queue-based background processing</strong> and <strong>headless-browser automation</strong> features that are part of the live system today.</li>
+          <li>Bootstrapped a standalone <strong>content-management tool</strong> (NestJS) and handed it off to the team.</li>
+          <li>Supported full-stack work across an <strong>Angular 17</strong> front end and a legacy <strong>Laravel (PHP)</strong> codebase.</li>
+          <li>Worked in a ~6-engineer team with Dockerised environments and Bitbucket Pipelines CI/CD.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <h3 class="job-title">Software Developer (IT), <span class="company">Volgograd State Technical University</span></h3>
+          <span class="job-meta">2020 — 2023</span>
+        </div>
+        <p class="job-sub">Volgograd, Russia</p>
+        <ul class="bullets">
+          <li>Maintained the university's <strong>remote-learning platform</strong> used by students and staff.</li>
+          <li>Built internal tools to streamline administrative workflows.</li>
+          <li>Supported the <strong>online admissions campaign</strong> infrastructure over multiple admission cycles.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="eyebrow">Selected Projects</h2>
+
+      <div class="proj">
+        <div class="proj-head">
+          <span class="proj-name">watchlight</span>
+          <span class="proj-stack">Go · WIP</span>
+          <a class="proj-link" href="https://github.com/vdzhagaev/watchlight">github.com/vdzhagaev/watchlight</a>
+        </div>
+        <p>Uptime-monitoring service in Go (work in progress). Working core: an HTTP API for monitor CRUD, SQLite storage behind an interface, HTTP/ping checkers, and a background scheduler running each check on its own interval with graceful shutdown (<code>signal.NotifyContext</code>); <code>chi</code> router, structured <code>slog</code> logging. Migrations, incidents and alerting are next.</p>
+      </div>
+
+      <div class="proj">
+        <div class="proj-head">
+          <span class="proj-name">pockit</span>
+          <span class="proj-stack">Go · early</span>
+          <a class="proj-link" href="https://github.com/vdzhagaev/pockit">github.com/vdzhagaev/pockit</a>
+        </div>
+        <p>A small URL-shortener HTTP service in Go: create / redirect / delete short aliases, storage behind an interface, <code>chi</code> middleware (request ID, panic recovery), Basic Auth, YAML + env config, structured <code>slog</code> logging. Groundwork for a planned pocket-tools chat bot.</p>
+      </div>
+
+      <div class="proj">
+        <div class="proj-head">
+          <span class="proj-name">pokeroll</span>
+          <span class="proj-stack">Tauri · Rust · Beta</span>
+          <a class="proj-link" href="https://github.com/vdzhagaev/pokeroll">github.com/vdzhagaev/pokeroll</a>
+        </div>
+        <p>Cross-platform desktop widget that rolls a random Pokémon from PokéAPI and renders it as a card — sprite, types, base stats, and trainer XP/levels. Fetches from an external API, renders pixel/ASCII art on the fly, persists progress locally, and lives in the system tray. Shipped as a public beta with builds for Windows / macOS / Linux — my most complete project so far, taken from idea to a public release.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="tail">
+        <div>
+          <h2 class="eyebrow">Education</h2>
+          <div class="item">
+            <div class="deg">M.Sc. — Information Systems &amp; Technologies (09.04.02)</div>
+            <div class="deg-sub">Volgograd State Technical University (ИАиС) · 2023–2026</div>
+          </div>
+          <div class="item">
+            <div class="deg">B.Sc. — Information Systems &amp; Technologies (09.03.02)</div>
+            <div class="deg-sub">Volgograd State Technical University · 2019–2023</div>
+          </div>
+        </div>
+        <div>
+          <h2 class="eyebrow">Languages</h2>
+          <div class="lang-row"><span class="lang-name">Russian</span><span class="lang-lvl">Native</span></div>
+          <div class="lang-row"><span class="lang-name">English</span><span class="lang-lvl">Intermediate · improving</span></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (e) {}
+      if (saved === 'dark' || saved === 'light') root.setAttribute('data-theme', saved);
+      function current() {
+        var t = root.getAttribute('data-theme');
+        if (t) return t;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.addEventListener('click', function (e) {
+        if (!e.target.closest('.theme-toggle')) return;
+        var next = current() === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      });
+    })();
+  </script>
+</body>
+</html>
