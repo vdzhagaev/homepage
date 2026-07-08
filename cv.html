@@ -271,10 +271,10 @@
   <div class="sheet">
     <header>
       <h1 class="name">Vyacheslav <span class="surname">Dzhagaev</span></h1>
-      <p class="role">Backend Engineer — Node.js / NestJS &nbsp;·&nbsp; Growing in Go</p>
+      <p class="role">Backend Engineer — Event-driven systems (NestJS) &nbsp;·&nbsp; Growing in Go</p>
       <ul class="contact">
-        <li><span class="dot">◆</span> Volgograd, Russia</li>
         <li><span class="dot">◆</span> Open to relocation — Serbia · Cyprus · Netherlands · Georgia</li>
+        <li><span class="dot">◆</span> Currently based in Volgograd, Russia</li>
         <li><span class="dot">◆</span> <a href="mailto:slava.dzhagaev@proton.me">slava.dzhagaev@proton.me</a></li>
         <li><span class="dot">◆</span> <a href="https://vdzhagaev.tech">vdzhagaev.tech</a></li>
         <li><span class="dot">◆</span> <a href="https://github.com/vdzhagaev">github.com/vdzhagaev</a></li>
@@ -283,7 +283,7 @@
 
     <section>
       <h2 class="eyebrow">Summary</h2>
-      <p class="summary">Backend-focused full-stack engineer with <strong>3+ years of commercial experience</strong> building and maintaining production web applications with <strong>NestJS (Node.js / TypeScript)</strong> and <strong>Angular</strong>. Comfortable owning features end-to-end — data model, service layer, background processing, and delivery through Docker&nbsp;+&nbsp;CI. Led a service migration to Clean Architecture and shipped queue-based and browser-automation features now running in production. Actively specialising in <strong>Go</strong>, building self-hosted, API-first services in my own projects. Looking for a backend role in the EU with relocation support.</p>
+      <p class="summary">Backend engineer with <strong>3+ years of commercial experience</strong>, primary author and maintainer of a production <strong>NestJS / MongoDB</strong> platform built on <strong>hexagonal architecture and domain events</strong> — an event-sourced outbox, CQRS-style read models, and a multi-stage <strong>BullMQ</strong> pipeline that escalates from static checks to <strong>Playwright/CDP browser automation</strong> against third-party services. Comfortable owning a feature end-to-end, backend through the <strong>Angular</strong> UI that consumes it. Actively specialising in <strong>Go</strong> for self-hosted, API-first services, and going deeper into <strong>Rust</strong> through hobby projects, starting with <strong>pokeroll</strong>. Looking for a backend role in the EU with relocation support.</p>
     </section>
 
     <section>
@@ -295,24 +295,24 @@
           <span class="tag lead">NestJS</span>
           <span class="tag lead">Node.js</span>
           <span class="tag lead">Go</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">PHP</span>
-          <span class="tag">C# / .NET</span>
           <span class="tag">SQL</span>
+          <span class="tag">Rust</span>
         </dd>
         <dt>Backend</dt>
         <dd class="tags">
           <span class="tag">REST APIs</span>
-          <span class="tag">Message queues</span>
-          <span class="tag">Background workers</span>
-          <span class="tag">Headless automation</span>
-          <span class="tag">Clean Architecture</span>
-          <span class="tag">DDD · CQRS</span>
+          <span class="tag">Hexagonal architecture</span>
+          <span class="tag">DDD · domain events</span>
+          <span class="tag">Event sourcing / outbox</span>
+          <span class="tag">CQRS read models</span>
+          <span class="tag">BullMQ / Redis</span>
+          <span class="tag">Playwright / CDP automation</span>
+          <span class="tag">WebSockets</span>
         </dd>
         <dt>Go stack</dt>
         <dd class="tags">
           <span class="tag">chi</span>
-          <span class="tag">pgx</span>
+          <span class="tag">database/sql</span>
           <span class="tag">slog</span>
           <span class="tag">Schedulers</span>
           <span class="tag">Graceful shutdown</span>
@@ -325,6 +325,7 @@
         </dd>
         <dt>Data</dt>
         <dd class="tags">
+          <span class="tag">MongoDB</span>
           <span class="tag">PostgreSQL</span>
           <span class="tag">SQLite</span>
           <span class="tag">Migrations</span>
@@ -351,12 +352,12 @@
         </div>
         <p class="job-sub">Remote (Chicago, USA)</p>
         <ul class="bullets">
-          <li>Core developer on a production client platform built as a <strong>NestJS monorepo</strong> (multiple apps + shared libraries), delivering backend features end-to-end.</li>
-          <li>Led the migration of the main backend service to <strong>Clean Architecture</strong>, improving modularity, boundaries, and testability.</li>
-          <li>Designed and shipped <strong>queue-based background processing</strong> and <strong>headless-browser automation</strong> features that are part of the live system today.</li>
-          <li>Bootstrapped a standalone <strong>content-management tool</strong> (NestJS) and handed it off to the team.</li>
-          <li>Supported full-stack work across an <strong>Angular 17</strong> front end and a legacy <strong>Laravel (PHP)</strong> codebase.</li>
-          <li>Worked in a ~6-engineer team with Dockerised environments and Bitbucket Pipelines CI/CD.</li>
+          <li>Primary author and maintainer of a link-building / backlink-monitoring backend (<strong>NestJS + MongoDB</strong>, pnpm monorepo) — designed the <strong>hexagonal architecture</strong> from scratch: domain layer with events-as-outbox, use-case layer, infra adapters, and an explicit DI registry so each deployable app only wires the providers it needs.</li>
+          <li>Designed a <strong>3-stage escalating verification pipeline</strong> (index probe → static HTTP fetch → headless-browser render) as chained <strong>BullMQ</strong> queues, each with its own concurrency and rate-limit profile.</li>
+          <li>Built two <strong>Playwright/CDP browser-automation</strong> workers driving persistent authenticated Chrome sessions against third-party SEO tools to collect metrics unavailable via public APIs.</li>
+          <li>Bootstrapped a separate <strong>content-workflow tool</strong> (NestJS/MongoDB) from scratch and owned it through several schema migrations.</li>
+          <li>Built the corresponding <strong>Angular</strong> feature (ag-grid server-side-row-model tables) end-to-end on top of the backend above — same feature, both ends of the stack — with light maintenance support on a legacy <strong>Laravel (PHP)</strong> tool.</li>
+          <li>Dockerised services, Bitbucket Pipelines CI/CD, shared internal packages across the monorepo.</li>
         </ul>
       </div>
 
@@ -401,7 +402,7 @@
           <span class="proj-stack">Tauri · Rust · Beta</span>
           <a class="proj-link" href="https://github.com/vdzhagaev/pokeroll">github.com/vdzhagaev/pokeroll</a>
         </div>
-        <p>Cross-platform desktop widget that rolls a random Pokémon from PokéAPI and renders it as a card — sprite, types, base stats, and trainer XP/levels. Fetches from an external API, renders pixel/ASCII art on the fly, persists progress locally, and lives in the system tray. Shipped as a public beta with builds for Windows / macOS / Linux — my most complete project so far, taken from idea to a public release.</p>
+        <p>Cross-platform desktop widget (<strong>Tauri 2</strong>: SvelteKit front end, Rust backend) that rolls a random Pokémon from PokéAPI and renders it as a card — sprite, types, base stats, and trainer XP/levels. Fetches from an external API, renders pixel/ASCII art on the fly, persists progress locally, and lives in the system tray. Shipped as a public beta with builds for Windows / macOS / Linux — my most complete project so far, and the one I'm using to push my Rust past beginner level.</p>
       </div>
     </section>
 
