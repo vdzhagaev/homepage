@@ -185,8 +185,8 @@
     <div class="wrap about">
       <h2 class="eyebrow">About</h2>
       <p>I'm Slava — a backend-focused engineer in Volgograd, Russia. For the past three years I've been <strong>sole architect</strong> of a production NestJS/MongoDB platform at <strong>Comrade Digital Marketing Agency</strong> — link-building and backlink monitoring at scale, built on <strong>hexagonal architecture</strong> with domain entities that don't know MongoDB exists, plus enough Angular, Laravel and Docker to move across the stack when a feature needs it.</p>
-      <p>I like the unglamorous parts of backend work: proving an incident is a missing index before agreeing to a multi-day refactor, replacing one bloated repository with narrow read/write ports, and building event-dispatch systems that keep aggregates consistent without a message broker. I also lead-contributed a separate editorial-workflow tool, including its outbox-based webhook delivery.</p>
-      <p>Off the clock I build small, <strong>self-hosted</strong> tools for everyday life — an uptime monitor, a pluggable chat-tool backend, a Pokémon desktop widget — and use them to go deeper into <strong>Go</strong>, and lately <strong>Rust</strong>.</p>
+      <p>I like the unglamorous parts of backend work: proving an incident is a missing index before agreeing to a multi-day refactor, replacing one bloated repository with narrow read/write ports, building event-dispatch systems that keep aggregates consistent without a message broker, and caching what an LLM discovers once so a page template never needs a second AI call. I also lead-contributed a separate editorial-workflow tool, including its outbox-based webhook delivery.</p>
+      <p>Off the clock I build small, <strong>self-hosted</strong> tools for everyday life — an uptime monitor, a Pokémon desktop widget — and use them to go deeper into <strong>Go</strong>, and lately <strong>Rust</strong>.</p>
       <p>Right now I'm looking for a backend role in <strong>Europe</strong> and open to relocation. If any of this resonates, <a class="inline" href="mailto:slava.dzhagaev@proton.me">my inbox is open</a>.</p>
     </div>
   </section>
@@ -203,15 +203,6 @@
             <span class="arrow">→</span>
           </div>
           <p>A solo-built uptime-monitoring service. Three channels with distinct backpressure semantics instead of one shared queue, a fixed worker pool, and all SQLite writes serialized through a single consumer to respect its one-writer-even-in-WAL constraint. Graceful shutdown drains in-flight work through a staged cancellation sequence.</p>
-        </a>
-        <a class="card" href="https://github.com/vdzhagaev/pockit">
-          <div class="card-top">
-            <span class="card-name">pockit</span>
-            <span class="card-stack">Go</span>
-            <span class="pill">Early</span>
-            <span class="arrow">→</span>
-          </div>
-          <p>A pluggable <code>Tool</code> interface with a generic router, so new messenger integrations (Telegram, Slack) require no changes to the core. First tool — a URL shortener — implemented end-to-end on SQLite storage; messenger adapters in progress.</p>
         </a>
         <a class="card" href="https://github.com/vdzhagaev/pokeroll">
           <div class="card-top">

@@ -344,6 +344,7 @@
         <dt>Frontend</dt>
         <dd class="tags">
           <span class="tag">Angular</span>
+          <span class="tag">React</span>
           <span class="tag">RxJS</span>
           <span class="tag">Svelte</span>
         </dd>
@@ -383,8 +384,9 @@
             <li>Built a <strong>hybrid event-dispatch system</strong> (change-stream watch + polling fallback with lease-based claiming) for eventual consistency between aggregates, storing every event as a replayable outbox.</li>
             <li>Diagnosed a bulk-persist regression (40s for ~1,150 rows) as a <strong>missing index</strong>, not an architecture problem, before a multi-day queue-split was greenlit — the real fix cut write time to under 1 second.</li>
             <li>Redesigned a 30K-row scraping bulk-write that silently hung 7–21 minutes with no retries into <strong>chunked, idempotent upsert batches</strong> with per-chunk timeouts and queue-level retry.</li>
-            <li>Engineered an <strong>AI-augmented extraction pipeline</strong> where an LLM discovers a stable CSS selector once per page template, validated before caching, then reused with zero further AI calls — proven live at 5/5 fields resolved from cache on a second account.</li>
-            <li>Shipped, then rolled back, a feature letting the model surface unrequested facts after recognizing it lacked the main pipeline's safety properties (confidence floor, grounding check, volume cap) — removed rather than patched, with documented preconditions for a safe return.</li>
+            <li>Implemented a <strong>FIFO semaphore</strong> gating a shared pool of browser contexts across 14 concurrent scraping workers, paired with randomized interaction pacing so repeat requests don't read as a bot to anti-automation systems.</li>
+            <li>Run three separate persistent-session browser-automation services rather than one generic scraper, each behind its own <strong>headful Chrome</strong> sidecar (Xvfb + noVNC) that an operator authenticates once, kept alive via an adaptive auth-health prober and continuous ambient mouse/scroll simulation — defending against a silently logged-out or flagged-idle session, not request volume.</li>
+            <li>Engineered an <strong>AI-augmented extraction pipeline</strong>: per-platform field rules live in a data-driven catalog, not hardcoded, and feed a composable, cache-friendly prompt that discovers a stable CSS selector once per page template — reused with zero further AI calls, proven at 5/5 fields from cache on a second account.</li>
           </ul>
         </div>
 
@@ -405,7 +407,7 @@
           </ul>
         </div>
 
-        <p class="job-note">Also maintained a legacy Laravel (PHP) tool, dockerised services, and ran Bitbucket Pipelines CI/CD across the monorepo.</p>
+        <p class="job-note">Also maintained a legacy Laravel (PHP) tool, migrated the operator dashboard from server-rendered HTML to a Vite + React SPA, dockerised services, and ran Bitbucket Pipelines CI/CD across the monorepo.</p>
       </div>
 
       <div class="job">
@@ -432,15 +434,6 @@
           <a class="proj-link" href="https://github.com/vdzhagaev/watchlight">github.com/vdzhagaev/watchlight</a>
         </div>
         <p>Solo-built uptime-monitoring service. Split the scheduler into three channels with distinct backpressure semantics (bounded job/result buffers, unbuffered signaling) instead of one shared queue, sized a fixed worker pool, and serialized all SQLite writes through a single consumer to respect its one-writer-even-in-WAL constraint. Graceful shutdown drains in-flight work through a staged cancellation sequence before a hard timeout escalates it. Migrations, metrics, and load testing in progress.</p>
-      </div>
-
-      <div class="proj">
-        <div class="proj-head">
-          <span class="proj-name">pockit</span>
-          <span class="proj-stack">Go · early</span>
-          <a class="proj-link" href="https://github.com/vdzhagaev/pockit">github.com/vdzhagaev/pockit</a>
-        </div>
-        <p>Designed a pluggable <code>Tool</code> interface with a generic router so new messenger integrations (Telegram, Slack) require no changes to the core — first tool implemented end-to-end on SQLite storage, messenger adapters in progress.</p>
       </div>
 
       <div class="proj">
