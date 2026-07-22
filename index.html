@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vyacheslav Dzhagaev — Backend Engineer</title>
-<meta name="description" content="Backend-focused engineer (NestJS, Go). Self-hosted tools, clean architecture. Open to relocation in Europe.">
+<meta name="description" content="Backend engineer (NestJS, Go) — sole architect of a hexagonal-architecture, event-driven NestJS/MongoDB platform. Self-hosted tools on the side. Open to relocation in Europe.">
 <style>
   :root {
     --paper: #fbfbfa;
@@ -165,10 +165,10 @@
 
   <header class="hero">
     <div class="wrap">
-      <p class="eyebrow-line">Backend Engineer · Node.js / NestJS · Go</p>
+      <p class="eyebrow-line">Backend Engineer · NestJS / TypeScript · Growing in Go</p>
       <h1>Vyacheslav <span class="surname">Dzhagaev</span></h1>
-      <p class="role">I build backends that stay boring in production.</p>
-      <p class="tagline">Three years shipping production web apps on NestJS; now building self-hosted, API-first tools in Go — and looking to do it somewhere new.</p>
+      <p class="role">I design backends where the domain doesn't know the database exists.</p>
+      <p class="tagline">Three years as sole architect of a production NestJS/MongoDB platform on hexagonal architecture and event-driven consistency; now building self-hosted, API-first tools in Go — and going deeper into Rust — while looking to do it somewhere new.</p>
       <div class="meta-row">
         <span class="badge"><span class="dot">◆</span> Volgograd, Russia</span>
         <span class="badge live"><span class="dot">◆</span> Open to relocation — EU</span>
@@ -184,9 +184,9 @@
   <section class="about-sec">
     <div class="wrap about">
       <h2 class="eyebrow">About</h2>
-      <p>I'm Slava — a backend-focused engineer in Volgograd, Russia. For the past three years I've built and maintained production web applications at <strong>Comrade Digital Marketing Agency</strong>, mostly server-side with <strong>NestJS</strong>, plus enough Angular, Laravel and Docker to move across the stack when a feature needs it.</p>
-      <p>I like the unglamorous parts of backend work: clean service boundaries, background jobs that recover instead of falling over, and code the next person can actually read. I led a service's migration to <strong>Clean Architecture</strong> and shipped the queue-based and browser-automation features it runs on today.</p>
-      <p>Off the clock I build small, <strong>self-hosted</strong> tools for everyday life — an uptime monitor, a URL shortener, a Pokémon desktop widget — and use them to go deeper into <strong>Go</strong> and get the core of a system right before adding anything clever.</p>
+      <p>I'm Slava — a backend-focused engineer in Volgograd, Russia. For the past three years I've been <strong>sole architect</strong> of a production NestJS/MongoDB platform at <strong>Comrade Digital Marketing Agency</strong> — link-building and backlink monitoring at scale, built on <strong>hexagonal architecture</strong> with domain entities that don't know MongoDB exists, plus enough Angular, Laravel and Docker to move across the stack when a feature needs it.</p>
+      <p>I like the unglamorous parts of backend work: proving an incident is a missing index before agreeing to a multi-day refactor, replacing one bloated repository with narrow read/write ports, and building event-dispatch systems that keep aggregates consistent without a message broker. I also lead-contributed a separate editorial-workflow tool, including its outbox-based webhook delivery.</p>
+      <p>Off the clock I build small, <strong>self-hosted</strong> tools for everyday life — an uptime monitor, a pluggable chat-tool backend, a Pokémon desktop widget — and use them to go deeper into <strong>Go</strong>, and lately <strong>Rust</strong>.</p>
       <p>Right now I'm looking for a backend role in <strong>Europe</strong> and open to relocation. If any of this resonates, <a class="inline" href="mailto:slava.dzhagaev@proton.me">my inbox is open</a>.</p>
     </div>
   </section>
@@ -202,7 +202,7 @@
             <span class="pill">WIP</span>
             <span class="arrow">→</span>
           </div>
-          <p>A lightweight uptime-monitoring service. HTTP API for monitors, SQLite storage behind an interface, HTTP/ping checkers, and a background scheduler running each check on its own interval with graceful shutdown.</p>
+          <p>A solo-built uptime-monitoring service. Three channels with distinct backpressure semantics instead of one shared queue, a fixed worker pool, and all SQLite writes serialized through a single consumer to respect its one-writer-even-in-WAL constraint. Graceful shutdown drains in-flight work through a staged cancellation sequence.</p>
         </a>
         <a class="card" href="https://github.com/vdzhagaev/pockit">
           <div class="card-top">
@@ -211,7 +211,7 @@
             <span class="pill">Early</span>
             <span class="arrow">→</span>
           </div>
-          <p>A small URL-shortener HTTP service — create / redirect / delete aliases, storage behind an interface, chi middleware, Basic Auth, config via YAML + env. Groundwork for a planned pocket-tools chat bot.</p>
+          <p>A pluggable <code>Tool</code> interface with a generic router, so new messenger integrations (Telegram, Slack) require no changes to the core. First tool — a URL shortener — implemented end-to-end on SQLite storage; messenger adapters in progress.</p>
         </a>
         <a class="card" href="https://github.com/vdzhagaev/pokeroll">
           <div class="card-top">
