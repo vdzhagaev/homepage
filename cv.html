@@ -273,6 +273,9 @@
        read out of order when an ATS extracts text from the PDF. */
     .skills { grid-template-columns: 1fr; gap: 4px 0; }
     .skills dt { padding-top: 10px; }
+    /* Same reasoning: Education/Languages sit side by side on screen, but
+       interleave line by line in the PDF text layer if left as two columns. */
+    .tail { grid-template-columns: 1fr; gap: 20px; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>

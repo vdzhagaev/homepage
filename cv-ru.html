@@ -273,6 +273,9 @@
        сетка может читаться не по порядку при извлечении текста ATS-системой. */
     .skills { grid-template-columns: 1fr; gap: 4px 0; }
     .skills dt { padding-top: 10px; }
+    /* То же самое для блока Образование/Языки — на экране это две колонки
+       рядом, но в текстовом слое PDF они переплетаются построчно. */
+    .tail { grid-template-columns: 1fr; gap: 20px; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
