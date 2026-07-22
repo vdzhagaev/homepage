@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vyacheslav Dzhagaev — Backend Engineer CV</title>
+<title>Вячеслав Джагаев — Backend-инженер, CV</title>
 <style>
   :root {
     --paper: #fbfbfa;
@@ -269,8 +269,8 @@
     .job, .proj, .job-block { page-break-inside: avoid; }
     a { border: none !important; }
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    /* Single-column skills list in print/PDF: a two-column dt/dd grid can
-       read out of order when an ATS extracts text from the PDF. */
+    /* Одноколоночный список скиллов в печати/PDF: двухколоночная dt/dd
+       сетка может читаться не по порядку при извлечении текста ATS-системой. */
     .skills { grid-template-columns: 1fr; gap: 4px 0; }
     .skills dt { padding-top: 10px; }
   }
@@ -282,23 +282,23 @@
     <div class="sitebar-inner">
       <a class="brand" href="./">V<span>D</span></a>
       <nav>
-        <a class="navlink" href="./">Home</a>
-        <a class="navlink" href="cv.html" aria-current="page">CV</a>
-        <a class="navlink" href="cv.pdf">PDF</a>
+        <a class="navlink" href="./">Главная</a>
+        <a class="navlink" href="cv-ru.html" aria-current="page">CV</a>
+        <a class="navlink" href="cv-ru.pdf">PDF</a>
       </nav>
       <span class="spacer"></span>
-      <a class="navlink lang-link" href="cv-ru.html" hreflang="ru" title="Русская версия">RU</a>
-      <button class="theme-toggle" type="button" aria-label="Toggle colour theme" title="Toggle theme">◐</button>
+      <a class="navlink lang-link" href="cv.html" hreflang="en" title="English version">EN</a>
+      <button class="theme-toggle" type="button" aria-label="Переключить тему" title="Переключить тему">◐</button>
     </div>
   </div>
 
   <div class="sheet">
     <header>
-      <h1 class="name">Vyacheslav <span class="surname">Dzhagaev</span></h1>
-      <p class="role">Backend Engineer (NestJS / TypeScript) &nbsp;·&nbsp; Growing in Go</p>
+      <h1 class="name">Вячеслав <span class="surname">Джагаев</span></h1>
+      <p class="role">Backend-инженер (NestJS / TypeScript) &nbsp;·&nbsp; Углубляюсь в Go</p>
       <ul class="contact">
-        <li><span class="dot">◆</span> Volgograd, Russia</li>
-        <li><span class="dot">◆</span> Open to relocation (EU)</li>
+        <li><span class="dot">◆</span> Волгоград, Россия</li>
+        <li><span class="dot">◆</span> Открыт к переезду (ЕС)</li>
         <li><span class="dot">◆</span> <a href="mailto:slava.dzhagaev@proton.me">slava.dzhagaev@proton.me</a></li>
         <li><span class="dot">◆</span> <a href="https://vdzhagaev.tech">vdzhagaev.tech</a></li>
         <li><span class="dot">◆</span> <a href="https://github.com/vdzhagaev">github.com/vdzhagaev</a></li>
@@ -307,11 +307,11 @@
 
     <section>
       <h2 class="eyebrow">Summary</h2>
-      <p class="summary">Backend engineer with <strong>3+ years of commercial experience</strong>, <strong>sole architect</strong> of a production NestJS/MongoDB platform built on <strong>hexagonal architecture</strong> — domain entities free of persistence concerns, narrow purpose-built read/write ports instead of a monolithic repository layer, and a hybrid event-dispatch system for eventual consistency between aggregates. Comfortable diagnosing production incidents down to root cause and shipping the fix under real constraints (legacy schema quirks, rate-limited third-party APIs, single-writer storage engines). Actively specialising in <strong>Go</strong> for self-hosted, API-first services, and going deeper into <strong>Rust</strong> through hobby projects. Looking for a backend role in the <strong>EU</strong> with relocation support.</p>
+      <p class="summary">Backend-инженер с <strong>3+ годами коммерческого опыта</strong>, <strong>единственный архитектор</strong> продовой платформы на NestJS/MongoDB, построенной на <strong>гексагональной архитектуре</strong> — доменные сущности без знания о персистентности, узкие read/write-порты вместо монолитного репозитория, и гибридная система доставки событий для eventual consistency между агрегатами. Умею диагностировать продовые инциденты до первопричины и доставлять фикс в реальных условиях (особенности легаси-схем, лимиты сторонних API, хранилища с одним writer'ом). Активно развиваюсь в <strong>Go</strong> для self-hosted API-first сервисов и углубляюсь в <strong>Rust</strong> через pet-проекты. В поиске backend-роли в <strong>ЕС</strong> с поддержкой релокации.</p>
     </section>
 
     <section>
-      <h2 class="eyebrow">Skills</h2>
+      <h2 class="eyebrow">Навыки</h2>
       <dl class="skills">
         <dt>Core</dt>
         <dd class="tags">
@@ -324,14 +324,14 @@
         </dd>
         <dt>Backend</dt>
         <dd class="tags">
-          <span class="tag">REST APIs</span>
-          <span class="tag">Hexagonal architecture</span>
+          <span class="tag">REST API</span>
+          <span class="tag">Гексагональная архитектура</span>
           <span class="tag">DDD</span>
           <span class="tag">Domain events</span>
           <span class="tag">Event sourcing / outbox</span>
-          <span class="tag">CQRS-style read models</span>
+          <span class="tag">CQRS-подобные read-модели</span>
           <span class="tag">BullMQ / Redis</span>
-          <span class="tag">Playwright/CDP automation</span>
+          <span class="tag">Playwright/CDP-автоматизация</span>
           <span class="tag">WebSockets</span>
         </dd>
         <dt>Go stack</dt>
@@ -339,7 +339,7 @@
           <span class="tag">chi</span>
           <span class="tag">database/sql</span>
           <span class="tag">slog</span>
-          <span class="tag">Schedulers</span>
+          <span class="tag">Планировщики</span>
           <span class="tag">Graceful shutdown</span>
         </dd>
         <dt>Frontend</dt>
@@ -349,19 +349,19 @@
           <span class="tag">RxJS</span>
           <span class="tag">Svelte</span>
         </dd>
-        <dt>Data</dt>
+        <dt>Данные</dt>
         <dd class="tags">
           <span class="tag">MongoDB</span>
           <span class="tag">PostgreSQL</span>
           <span class="tag">SQLite</span>
-          <span class="tag">Migrations</span>
+          <span class="tag">Миграции</span>
         </dd>
-        <dt>Infra</dt>
+        <dt>Инфра</dt>
         <dd class="tags">
           <span class="tag">Docker</span>
           <span class="tag">docker-compose</span>
           <span class="tag">Bitbucket Pipelines</span>
-          <span class="tag">Monorepo</span>
+          <span class="tag">Монорепозиторий</span>
           <span class="tag">Linux</span>
           <span class="tag">Git</span>
         </dd>
@@ -369,101 +369,101 @@
     </section>
 
     <section>
-      <h2 class="eyebrow">Experience</h2>
+      <h2 class="eyebrow">Опыт</h2>
 
       <div class="job">
         <div class="job-head">
-          <h3 class="job-title">Full-Stack Engineer, <span class="company">Comrade Digital Marketing Agency</span></h3>
-          <span class="job-meta">Mar 2023 — Present</span>
+          <h3 class="job-title">Full-Stack инженер, <span class="company">Comrade Digital Marketing Agency</span></h3>
+          <span class="job-meta">Март 2023 — настоящее время</span>
         </div>
-        <p class="job-sub">Remote</p>
+        <p class="job-sub">Удалённо</p>
 
         <div class="job-block">
-          <h4 class="job-block-title">Link-building / backlink-monitoring platform <span class="block-stack">(NestJS + MongoDB, pnpm monorepo)</span> — <span class="block-role">sole architect and primary author</span></h4>
+          <h4 class="job-block-title">Платформа для link-building / мониторинга бэклинков <span class="block-stack">(NestJS + MongoDB, pnpm-монорепозиторий)</span> — <span class="block-role">единственный архитектор и основной автор</span></h4>
           <ul class="bullets">
-            <li>Designed the <strong>hexagonal architecture</strong> from scratch: domain entities with no persistence concerns, unit-tested without a database, plus narrow read/write ports per domain instead of one fat repository — dashboards and reports get denormalized, query-optimized data without touching write-side invariants.</li>
-            <li>Built a <strong>hybrid event-dispatch system</strong> (change-stream watch + polling fallback with lease-based claiming) for eventual consistency between aggregates, storing every event as a replayable outbox.</li>
-            <li>Diagnosed a bulk-persist regression (40s for ~1,150 rows) as a <strong>missing index</strong>, not an architecture problem, before a multi-day queue-split was greenlit — the real fix cut write time to under 1 second.</li>
-            <li>Redesigned a 30K-row scraping bulk-write that silently hung 7–21 minutes with no retries into <strong>chunked, idempotent upsert batches</strong> with per-chunk timeouts and queue-level retry.</li>
-            <li>Implemented a <strong>FIFO semaphore</strong> gating a shared pool of browser contexts across 14 concurrent scraping workers, paired with randomized interaction pacing so repeat requests don't read as a bot to anti-automation systems.</li>
-            <li>Run three separate persistent-session browser-automation services rather than one generic scraper, each behind its own <strong>headful Chrome</strong> sidecar (Xvfb + noVNC) that an operator authenticates once, kept alive via an adaptive auth-health prober and continuous ambient mouse/scroll simulation — defending against a silently logged-out or flagged-idle session, not request volume.</li>
-            <li>Engineered an <strong>AI-augmented extraction pipeline</strong>: per-platform field rules live in a data-driven catalog, not hardcoded, and feed a composable, cache-friendly prompt that discovers a stable CSS selector once per page template — reused with zero further AI calls, proven at 5/5 fields from cache on a second account.</li>
+            <li>Спроектировал <strong>гексагональную архитектуру</strong> с нуля: доменные сущности без знания о персистентности, инварианты закреплены в конструкторах и покрыты юнит-тестами без базы данных, плюс узкие read/write-порты на домен вместо одного толстого репозитория — дашборды и отчёты получают денормализованные, query-оптимизированные данные, не затрагивая write-side инварианты.</li>
+            <li>Построил <strong>гибридную систему доставки событий</strong> (change-stream watch + polling fallback с lease-based захватом) для eventual consistency между агрегатами, сохраняя каждое событие как outbox для воспроизведения инцидента из журнала событий, а не восстановления по логам.</li>
+            <li>Диагностировал регрессию bulk-записи (40с на ~1150 строк) как <strong>отсутствующий индекс</strong>, а не архитектурное узкое место — до того как команда согласилась на многодневный рефакторинг с разделением очередей; реальный фикс сократил время записи до &lt;1с.</li>
+            <li>Переработал bulk-запись скрейпинга на 30 тыс. строк, которая молча зависала на 7–21 минуту без ретраев, в <strong>чанкованные идемпотентные upsert-батчи</strong> с таймаутами на чанк и ретраем на уровне очереди.</li>
+            <li>Реализовал <strong>FIFO-семафор</strong>, ограничивающий доступ к общему пулу browser context'ов для 14 параллельных скрейпинг-воркеров, вместе со случайными паузами взаимодействия, чтобы повторные запросы не читались антибот-системами как бот.</li>
+            <li>Поддерживаю три отдельных сервиса с персистентной сессией <strong>браузерной автоматизации</strong> вместо одного универсального скрейпера — каждый со своим headful Chrome-сайдкаром (Xvfb + noVNC), в который оператор логинится один раз; сессия держится живой через адаптивный auth-health prober и постоянную имитацию активности мыши/скролла — защита именно от тихого разлогина или флага «неактивной» сессии, а не от объёма запросов.</li>
+            <li>Спроектировал <strong>AI-augmented pipeline</strong> для извлечения данных: правила по каждой площадке лежат в data-driven каталоге, а не хардкодятся, и питают составной, cache-friendly промпт, который один раз на шаблон страницы находит стабильный CSS-селектор — дальше переиспользуется без единого нового вызова AI, подтверждено на практике: 5/5 полей из кэша на втором аккаунте.</li>
           </ul>
         </div>
 
         <div class="job-block">
-          <h4 class="job-block-title">Editorial workflow tool <span class="block-stack">(NestJS + MongoDB)</span> — <span class="block-role">lead contributor, founding author</span></h4>
+          <h4 class="job-block-title">Инструмент редакторского workflow <span class="block-stack">(NestJS + MongoDB)</span> — <span class="block-role">ведущий контрибьютор, автор-основатель</span></h4>
           <ul class="bullets">
-            <li>Root-caused two production incidents to fire-and-forget webhook delivery (a data race and a silent message loss), then designed a <strong>transactional outbox</strong> — atomic status flag, lease-based polling fallback, backoff with jitter, dead-lettering.</li>
-            <li>Found a bulk-approval path that bypassed the new outbox entirely, silently skipping notifications — fixed with transactional snapshotting on the same query path instead of duplicating outbox logic.</li>
-            <li>Delivered the matching Angular feature (server-side row model grids) end-to-end on top of this backend.</li>
+            <li>Нашёл первопричину двух продовых инцидентов в fire-and-forget доставке вебхуков (гонка данных и молчаливая потеря сообщения), затем спроектировал <strong>transactional outbox</strong> — атомарный статус-флаг, lease-based polling fallback, backoff с джиттером, dead-lettering.</li>
+            <li>Нашёл путь bulk-approve, который обходил новый outbox целиком, молча пропуская уведомления — исправил транзакционным снапшоттингом в том же query-пути вместо дублирования outbox-логики.</li>
+            <li>Реализовал соответствующую фичу на Angular (server-side row model гриды) end-to-end поверх этого бэкенда.</li>
           </ul>
         </div>
 
         <div class="job-block">
-          <h4 class="job-block-title">Shared frontend platform <span class="block-stack">(Angular)</span> — <span class="block-role">contributor to specific modules</span></h4>
+          <h4 class="job-block-title">Общая frontend-платформа <span class="block-stack">(Angular)</span> — <span class="block-role">контрибьютор в отдельных модулях</span></h4>
           <ul class="bullets">
-            <li>Built the real-time <strong>WebSocket layer</strong> for a set of collaborative-editing features, through a later migration and event-schema alignment with the backend.</li>
-            <li>Adapted an existing <strong>undo/redo engine</strong> to a second data domain via a generic adapter interface without touching the engine's core, including a TTL soft-delete edge case that could otherwise silently corrupt restores.</li>
+            <li>Построил real-time <strong>WebSocket-слой</strong> для набора функций совместного редактирования — от первой реализации до последующей миграции и выравнивания event-схемы с бэкендом.</li>
+            <li>Адаптировал существующий <strong>undo/redo-движок</strong> под второй домен данных через generic adapter-интерфейс, не трогая ядро движка — включая обработку TTL soft-delete edge case, который иначе мог тихо ломать восстановление.</li>
           </ul>
         </div>
 
-        <p class="job-note">Also maintained a legacy Laravel (PHP) tool, migrated the operator dashboard from server-rendered HTML to a Vite + React SPA, dockerised services, and ran Bitbucket Pipelines CI/CD across the monorepo.</p>
+        <p class="job-note">Также поддерживал легаси-инструмент на Laravel (PHP), мигрировал операторскую панель с server-rendered HTML на Vite + React SPA, докеризировал сервисы и вёл Bitbucket Pipelines CI/CD по всему монорепозиторию.</p>
       </div>
 
       <div class="job">
         <div class="job-head">
-          <h3 class="job-title">Software Developer (IT), <span class="company">Volgograd State Technical University</span></h3>
+          <h3 class="job-title">Разработчик ПО (IT), <span class="company">Волгоградский государственный технический университет</span></h3>
           <span class="job-meta">2020 — 2023</span>
         </div>
-        <p class="job-sub">Volgograd, Russia</p>
+        <p class="job-sub">Волгоград, Россия</p>
         <ul class="bullets">
-          <li>Maintained the university's <strong>remote-learning platform</strong> used by students and staff.</li>
-          <li>Built internal tools to streamline administrative workflows.</li>
-          <li>Supported the <strong>online admissions campaign</strong> infrastructure over multiple admission cycles.</li>
+          <li>Поддерживал <strong>платформу дистанционного обучения</strong> университета для студентов и сотрудников.</li>
+          <li>Разрабатывал внутренние инструменты для упрощения административных процессов.</li>
+          <li>Поддерживал инфраструктуру <strong>онлайн-приёмной кампании</strong> на протяжении нескольких приёмных циклов.</li>
         </ul>
       </div>
     </section>
 
     <section>
-      <h2 class="eyebrow">Selected Projects</h2>
+      <h2 class="eyebrow">Избранные проекты</h2>
 
       <div class="proj">
         <div class="proj-head">
           <span class="proj-name">watchlight</span>
-          <span class="proj-stack">Go · WIP</span>
+          <span class="proj-stack">Go · в разработке</span>
           <a class="proj-link" href="https://github.com/vdzhagaev/watchlight">github.com/vdzhagaev/watchlight</a>
         </div>
-        <p>Solo-built uptime-monitoring service. Split the scheduler into three channels with distinct backpressure semantics (bounded job/result buffers, unbuffered signaling) instead of one shared queue, sized a fixed worker pool, and serialized all SQLite writes through a single consumer to respect its one-writer-even-in-WAL constraint. Graceful shutdown drains in-flight work through a staged cancellation sequence before a hard timeout escalates it. Migrations, metrics, and load testing in progress.</p>
+        <p>Сервис мониторинга аптайма, написанный соло. Разделил scheduler на три канала с разной семантикой backpressure (ограниченные буферы job/result, небуферизованная сигнализация) вместо одной общей очереди, подобрал фиксированный пул воркеров и сериализовал все записи в SQLite через единственного consumer'а — из-за ограничения «один writer даже в WAL». Graceful shutdown вытекает работающие задачи через ступенчатую последовательность отмены, прежде чем жёсткий таймаут форсирует завершение. Миграции, метрики и нагрузочное тестирование — в процессе.</p>
       </div>
 
       <div class="proj">
         <div class="proj-head">
           <span class="proj-name">pokeroll</span>
-          <span class="proj-stack">Tauri · Rust · Beta</span>
+          <span class="proj-stack">Tauri · Rust · Бета</span>
           <a class="proj-link" href="https://github.com/vdzhagaev/pokeroll">github.com/vdzhagaev/pokeroll</a>
         </div>
-        <p>Cross-platform desktop widget (Tauri 2, SvelteKit + Rust) that rolls a random Pokémon from PokéAPI and renders it as a card with persisted local progress. Shipped as a public beta with builds for Windows/macOS/Linux — most complete shipped project so far.</p>
+        <p>Кроссплатформенный десктоп-виджет (Tauri 2, SvelteKit + Rust), который выбирает случайного покемона из PokéAPI и рендерит карточку с сохранённым локальным прогрессом. Выпущен как публичная бета со сборками под Windows/macOS/Linux — самый законченный проект на сегодняшний день.</p>
       </div>
     </section>
 
     <section>
       <div class="tail">
         <div>
-          <h2 class="eyebrow">Education</h2>
+          <h2 class="eyebrow">Образование</h2>
           <div class="item">
-            <div class="deg">M.Sc. — Information Systems &amp; Technologies (09.04.02)</div>
-            <div class="deg-sub">Volgograd State Technical University · 2023–2026</div>
+            <div class="deg">Магистратура — Информационные системы и технологии (09.04.02)</div>
+            <div class="deg-sub">Волгоградский государственный технический университет · 2023–2026</div>
           </div>
           <div class="item">
-            <div class="deg">B.Sc. — Information Systems &amp; Technologies (09.03.02)</div>
-            <div class="deg-sub">Volgograd State Technical University · 2019–2023</div>
+            <div class="deg">Бакалавриат — Информационные системы и технологии (09.03.02)</div>
+            <div class="deg-sub">Волгоградский государственный технический университет · 2019–2023</div>
           </div>
         </div>
         <div>
-          <h2 class="eyebrow">Languages</h2>
-          <div class="lang-row"><span class="lang-name">Russian</span><span class="lang-lvl">Native</span></div>
-          <div class="lang-row"><span class="lang-name">English</span><span class="lang-lvl">Intermediate · improving</span></div>
+          <h2 class="eyebrow">Языки</h2>
+          <div class="lang-row"><span class="lang-name">Русский</span><span class="lang-lvl">родной</span></div>
+          <div class="lang-row"><span class="lang-name">Английский</span><span class="lang-lvl">Intermediate</span></div>
         </div>
       </div>
     </section>
