@@ -269,6 +269,10 @@
     .job, .proj, .job-block { page-break-inside: avoid; }
     a { border: none !important; }
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    /* Single-column skills list in print/PDF: a two-column dt/dd grid can
+       read out of order when an ATS extracts text from the PDF. */
+    .skills { grid-template-columns: 1fr; gap: 4px 0; }
+    .skills dt { padding-top: 10px; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
@@ -375,32 +379,29 @@
         <div class="job-block">
           <h4 class="job-block-title">Link-building / backlink-monitoring platform <span class="block-stack">(NestJS + MongoDB, pnpm monorepo)</span> — <span class="block-role">sole architect and primary author</span></h4>
           <ul class="bullets">
-            <li>Designed the <strong>hexagonal architecture</strong> from scratch: domain entities with no persistence concerns, invariants enforced in constructors and covered by unit tests requiring no database — instead of embedding business rules in Mongoose schemas, which would have required a live DB just to test a validation rule.</li>
-            <li>Replaced a single fat repository abstraction with narrow, purpose-built <strong>read/write ports</strong> per domain — let read paths (grid pagination, dashboards, reports) use denormalized DTOs and aggressive query optimization without the write-side entity mapping constraining them, and without touching domain invariants.</li>
-            <li>Built a <strong>hybrid event-dispatch system</strong> (change-stream watch + polling fallback with lease-based claiming) for eventual consistency between aggregates, avoiding both a full message broker and unsafe direct cross-aggregate writes; per-write-entity in-memory queues preserve ordering while allowing full parallelism across different aggregates.</li>
-            <li>Diagnosed a bulk-persist regression (40s for ~1,150 rows) as a <strong>missing index</strong> — not an architectural bottleneck — before the team committed to a multi-day queue-splitting refactor; the actual fix cut expected write time to under 1 second.</li>
-            <li>Redesigned a 30K-row scraping bulk-write that was silently hanging 7–21 minutes with no retries into <strong>chunked, idempotent upsert batches</strong> with per-chunk timeouts and queue-level retry — a deliberate trade of whole-batch atomicity for bounded latency and resilience.</li>
-            <li>Built a manual <strong>FIFO semaphore</strong> gating access to a small pool of browser contexts (not just a worker-count cap) shared by 14 concurrent scraping workers on one browser-automation sidecar, paired with randomized pointer/scroll pacing per fetch so repeat hits don't share a machine-identical rhythm.</li>
-            <li>Implemented a 3-stage escalating verification pipeline (index probe → static fetch → headless-browser render) as chained <strong>BullMQ</strong> queues, each with its own concurrency and rate-limit profile.</li>
-            <li>Operate three separate persistent-session browser-automation services (one third-party SEO tool, two accounts on another) rather than one generic scraper — each drives its own <strong>headful Chrome</strong> sidecar (Xvfb + noVNC) that an operator authenticates once, since each tool has a distinct login flow and anti-automation behavior.</li>
-            <li>Built an adaptive auth-health prober (5-minute cadence when healthy, 30s when not) that auto-pauses/resumes each service's queue on login-state change, plus a continuous ambient mouse/scroll-drift simulation that keeps each session looking human between jobs — the real failure mode here was a silently logged-out or flagged-idle session, not request throughput, so that's what the design defends against.</li>
+            <li>Designed the <strong>hexagonal architecture</strong> from scratch: domain entities with no persistence concerns, unit-tested without a database, plus narrow read/write ports per domain instead of one fat repository — dashboards and reports get denormalized, query-optimized data without touching write-side invariants.</li>
+            <li>Built a <strong>hybrid event-dispatch system</strong> (change-stream watch + polling fallback with lease-based claiming) for eventual consistency between aggregates, storing every event as a replayable outbox.</li>
+            <li>Diagnosed a bulk-persist regression (40s for ~1,150 rows) as a <strong>missing index</strong>, not an architecture problem, before a multi-day queue-split was greenlit — the real fix cut write time to under 1 second.</li>
+            <li>Redesigned a 30K-row scraping bulk-write that silently hung 7–21 minutes with no retries into <strong>chunked, idempotent upsert batches</strong> with per-chunk timeouts and queue-level retry.</li>
+            <li>Engineered an <strong>AI-augmented extraction pipeline</strong> where an LLM discovers a stable CSS selector once per page template, validated before caching, then reused with zero further AI calls — proven live at 5/5 fields resolved from cache on a second account.</li>
+            <li>Shipped, then rolled back, a feature letting the model surface unrequested facts after recognizing it lacked the main pipeline's safety properties (confidence floor, grounding check, volume cap) — removed rather than patched, with documented preconditions for a safe return.</li>
           </ul>
         </div>
 
         <div class="job-block">
           <h4 class="job-block-title">Editorial workflow tool <span class="block-stack">(NestJS + MongoDB)</span> — <span class="block-role">lead contributor, founding author</span></h4>
           <ul class="bullets">
-            <li>Diagnosed two production incidents caused by fire-and-forget webhook delivery (data race and silent message loss), then designed a <strong>transactional outbox</strong>: status flag written atomically in the same transaction as the state change, lease-based polling fallback, exponential backoff with jitter and dead-lettering.</li>
-            <li>Found and closed a follow-up gap where a separate bulk-approval code path bypassed the newly built outbox entirely, silently skipping downstream notifications — fixed by adding transactional snapshotting to the same query path rather than duplicating outbox logic.</li>
-            <li>Built the corresponding Angular feature (server-side row model tables for large paginated/sortable grids) end-to-end on top of the backend above.</li>
+            <li>Root-caused two production incidents to fire-and-forget webhook delivery (a data race and a silent message loss), then designed a <strong>transactional outbox</strong> — atomic status flag, lease-based polling fallback, backoff with jitter, dead-lettering.</li>
+            <li>Found a bulk-approval path that bypassed the new outbox entirely, silently skipping notifications — fixed with transactional snapshotting on the same query path instead of duplicating outbox logic.</li>
+            <li>Delivered the matching Angular feature (server-side row model grids) end-to-end on top of this backend.</li>
           </ul>
         </div>
 
         <div class="job-block">
           <h4 class="job-block-title">Shared frontend platform <span class="block-stack">(Angular)</span> — <span class="block-role">contributor to specific modules</span></h4>
           <ul class="bullets">
-            <li>Built the real-time <strong>WebSocket layer</strong> for a set of collaborative-editing features, from first implementation through a later migration and event-schema alignment with the backend.</li>
-            <li>Adapted an existing <strong>undo/redo engine</strong> to support a second data domain via a generic adapter interface, without modifying the engine's core — including handling a TTL-based soft-delete edge case that could otherwise cause silent partial-restore failures.</li>
+            <li>Built the real-time <strong>WebSocket layer</strong> for a set of collaborative-editing features, through a later migration and event-schema alignment with the backend.</li>
+            <li>Adapted an existing <strong>undo/redo engine</strong> to a second data domain via a generic adapter interface without touching the engine's core, including a TTL soft-delete edge case that could otherwise silently corrupt restores.</li>
           </ul>
         </div>
 
