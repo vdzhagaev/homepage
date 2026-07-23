@@ -170,23 +170,15 @@
     font-variant-numeric: tabular-nums;
   }
   .job-sub { font-size: 13px; color: var(--ash); margin: 2px 0 0; }
-  ul.bullets { margin: 11px 0 0; padding: 0; list-style: none; }
-  ul.bullets li {
-    position: relative;
-    padding-left: 18px;
+  .bullet {
+    padding-left: 14px;
+    text-indent: -14px;
     margin: 6px 0;
     max-width: 74ch;
   }
-  ul.bullets li::before {
-    content: "";
-    position: absolute;
-    left: 2px;
-    top: 9px;
-    width: 5px; height: 5px;
-    background: var(--accent);
-    border-radius: 50%;
-  }
-  ul.bullets code, .summary code {
+  .job-block-title + .bullet, .job-sub + .bullet { margin-top: 11px; }
+  .bullet::before { content: "\25AA  "; color: var(--accent); font-size: 0.7em; }
+  .bullet code, .summary code {
     font-family: var(--mono);
     font-size: 0.86em;
     background: var(--rule-soft);
@@ -388,32 +380,26 @@
 
         <div class="job-block">
           <h4 class="job-block-title">Link-building / backlink-monitoring platform <span class="block-stack">(NestJS + MongoDB, pnpm monorepo)</span> - <span class="block-role">sole architect and primary author</span></h4>
-          <ul class="bullets">
-            <li>Designed the <strong>hexagonal architecture</strong> from scratch: domain entities with no persistence concerns, unit-tested without a database, plus narrow read/write ports per domain instead of one fat repository - dashboards and reports get denormalized, query-optimized data without touching write-side invariants.</li>
-            <li>Built a <strong>hybrid event-dispatch system</strong> (change-stream watch + polling fallback with lease-based claiming) for eventual consistency between aggregates, storing every event as a replayable outbox.</li>
-            <li>Diagnosed a bulk-persist regression (40s for ~1,150 rows) as a <strong>missing index</strong>, not an architecture problem, before a multi-day queue-split was greenlit - the real fix cut write time to under 1 second.</li>
-            <li>Redesigned a 30K-row scraping bulk-write that silently hung 7-21 minutes with no retries into <strong>chunked, idempotent upsert batches</strong> with per-chunk timeouts and queue-level retry.</li>
-            <li>Implemented a <strong>FIFO semaphore</strong> gating a shared pool of browser contexts across 14 concurrent scraping workers, paired with randomized interaction pacing so repeat requests don't read as a bot to anti-automation systems.</li>
-            <li>Run three separate persistent-session browser-automation services rather than one generic scraper, each behind its own <strong>headful Chrome</strong> sidecar (Xvfb + noVNC) that an operator authenticates once, kept alive via an adaptive auth-health prober and continuous ambient mouse/scroll simulation - defending against a silently logged-out or flagged-idle session, not request volume.</li>
-            <li>Engineered an <strong>AI-augmented extraction pipeline</strong>: per-platform field rules live in a data-driven catalog, not hardcoded, and feed a composable, cache-friendly prompt that discovers a stable CSS selector once per page template - reused with zero further AI calls, proven at 5/5 fields from cache on a second account.</li>
-          </ul>
+          <p class="bullet">Designed the <strong>hexagonal architecture</strong> from scratch: domain entities with no persistence concerns, unit-tested without a database, plus narrow read/write ports per domain instead of one fat repository - dashboards and reports get denormalized, query-optimized data without touching write-side invariants.</p>
+          <p class="bullet">Built a <strong>hybrid event-dispatch system</strong> (change-stream watch + polling fallback with lease-based claiming) for eventual consistency between aggregates, storing every event as a replayable outbox.</p>
+          <p class="bullet">Diagnosed a bulk-persist regression (40s for ~1,150 rows) as a <strong>missing index</strong>, not an architecture problem, before a multi-day queue-split was greenlit - the real fix cut write time to under 1 second.</p>
+          <p class="bullet">Redesigned a 30K-row scraping bulk-write that silently hung 7-21 minutes with no retries into <strong>chunked, idempotent upsert batches</strong> with per-chunk timeouts and queue-level retry.</p>
+          <p class="bullet">Implemented a <strong>FIFO semaphore</strong> gating a shared pool of browser contexts across 14 concurrent scraping workers, paired with randomized interaction pacing so repeat requests don't read as a bot to anti-automation systems.</p>
+          <p class="bullet">Run three separate persistent-session browser-automation services rather than one generic scraper, each behind its own <strong>headful Chrome</strong> sidecar (Xvfb + noVNC) that an operator authenticates once, kept alive via an adaptive auth-health prober and continuous ambient mouse/scroll simulation - defending against a silently logged-out or flagged-idle session, not request volume.</p>
+          <p class="bullet">Engineered an <strong>AI-augmented extraction pipeline</strong>: per-platform field rules live in a data-driven catalog, not hardcoded, and feed a composable, cache-friendly prompt that discovers a stable CSS selector once per page template - reused with zero further AI calls, proven at 5/5 fields from cache on a second account.</p>
         </div>
 
         <div class="job-block">
           <h4 class="job-block-title">Editorial workflow tool <span class="block-stack">(NestJS + MongoDB)</span> - <span class="block-role">lead contributor, founding author</span></h4>
-          <ul class="bullets">
-            <li>Root-caused two production incidents to fire-and-forget webhook delivery (a data race and a silent message loss), then designed a <strong>transactional outbox</strong> - atomic status flag, lease-based polling fallback, backoff with jitter, dead-lettering.</li>
-            <li>Found a bulk-approval path that bypassed the new outbox entirely, silently skipping notifications - fixed with transactional snapshotting on the same query path instead of duplicating outbox logic.</li>
-            <li>Delivered the matching Angular feature (server-side row model grids) end-to-end on top of this backend.</li>
-          </ul>
+          <p class="bullet">Root-caused two production incidents to fire-and-forget webhook delivery (a data race and a silent message loss), then designed a <strong>transactional outbox</strong> - atomic status flag, lease-based polling fallback, backoff with jitter, dead-lettering.</p>
+          <p class="bullet">Found a bulk-approval path that bypassed the new outbox entirely, silently skipping notifications - fixed with transactional snapshotting on the same query path instead of duplicating outbox logic.</p>
+          <p class="bullet">Delivered the matching Angular feature (server-side row model grids) end-to-end on top of this backend.</p>
         </div>
 
         <div class="job-block">
           <h4 class="job-block-title">Shared frontend platform <span class="block-stack">(Angular)</span> - <span class="block-role">contributor to specific modules</span></h4>
-          <ul class="bullets">
-            <li>Built the real-time <strong>WebSocket layer</strong> for a set of collaborative-editing features, through a later migration and event-schema alignment with the backend.</li>
-            <li>Adapted an existing <strong>undo/redo engine</strong> to a second data domain via a generic adapter interface without touching the engine's core, including a TTL soft-delete edge case that could otherwise silently corrupt restores.</li>
-          </ul>
+          <p class="bullet">Built the real-time <strong>WebSocket layer</strong> for a set of collaborative-editing features, through a later migration and event-schema alignment with the backend.</p>
+          <p class="bullet">Adapted an existing <strong>undo/redo engine</strong> to a second data domain via a generic adapter interface without touching the engine's core, including a TTL soft-delete edge case that could otherwise silently corrupt restores.</p>
         </div>
 
         <p class="job-note">Also maintained a legacy Laravel (PHP) tool, migrated the operator dashboard from server-rendered HTML to a Vite + React SPA, dockerised services, and ran Bitbucket Pipelines CI/CD across the monorepo.</p>
@@ -425,11 +411,9 @@
           <span class="job-meta">2020 - 2023</span>
         </div>
         <p class="job-sub">Volgograd, Russia</p>
-        <ul class="bullets">
-          <li>Maintained the university's <strong>remote-learning platform</strong> used by students and staff.</li>
-          <li>Built internal tools to streamline administrative workflows.</li>
-          <li>Supported the <strong>online admissions campaign</strong> infrastructure over multiple admission cycles.</li>
-        </ul>
+        <p class="bullet">Maintained the university's <strong>remote-learning platform</strong> used by students and staff.</p>
+        <p class="bullet">Built internal tools to streamline administrative workflows.</p>
+        <p class="bullet">Supported the <strong>online admissions campaign</strong> infrastructure over multiple admission cycles.</p>
       </div>
     </section>
 
