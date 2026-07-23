@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Вячеслав Джагаев — Backend-инженер, CV</title>
+<title>Вячеслав Джагаев - Backend-инженер, CV</title>
 <style>
   :root {
     --paper: #fbfbfa;
@@ -266,16 +266,29 @@
     body { font-size: 10.5pt; }
     .sheet { max-width: none; padding: 0; }
     section { margin-top: 20px; }
-    .job, .proj, .job-block { page-break-inside: avoid; }
+    .proj { page-break-inside: avoid; }
     a { border: none !important; }
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     /* Одноколоночный список скиллов в печати/PDF: двухколоночная dt/dd
        сетка может читаться не по порядку при извлечении текста ATS-системой. */
     .skills { grid-template-columns: 1fr; gap: 4px 0; }
     .skills dt { padding-top: 10px; }
-    /* То же самое для блока Образование/Языки — на экране это две колонки
+    /* То же самое для блока Образование/Языки - на экране это две колонки
        рядом, но в текстовом слое PDF они переплетаются построчно. */
     .tail { grid-template-columns: 1fr; gap: 20px; }
+    /* flex-wrap has the same failure mode as grid columns: once the
+       contact list or a tag group wraps onto more than one visual line,
+       the PDF text layer follows that visual wrapping instead of DOM
+       order. Collapse both to a single plain-text run per line/group. */
+    .contact { display: block; }
+    .contact li { display: inline; }
+    .contact li:not(:last-child)::after { content: "  ·  "; }
+    .contact .dot { display: none; }
+    .tags .tag {
+      background: none; border: none; padding: 0; border-radius: 0;
+      font-size: inherit; font-family: inherit; color: inherit;
+    }
+    .tags .tag:not(:last-child)::after { content: ", "; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
@@ -310,7 +323,7 @@
 
     <section>
       <h2 class="eyebrow">Summary</h2>
-      <p class="summary">Backend-инженер с <strong>3+ годами коммерческого опыта</strong>, <strong>единственный архитектор</strong> продовой платформы на NestJS/MongoDB, построенной на <strong>гексагональной архитектуре</strong> — доменные сущности без знания о персистентности, узкие read/write-порты вместо монолитного репозитория, и гибридная система доставки событий для eventual consistency между агрегатами. Умею диагностировать продовые инциденты до первопричины и доставлять фикс в реальных условиях (особенности легаси-схем, лимиты сторонних API, хранилища с одним writer'ом). Активно развиваюсь в <strong>Go</strong> для self-hosted API-first сервисов и углубляюсь в <strong>Rust</strong> через pet-проекты. В поиске backend-роли в <strong>ЕС</strong> с поддержкой релокации.</p>
+      <p class="summary">Backend-инженер с <strong>3+ годами коммерческого опыта</strong>, <strong>единственный архитектор</strong> продовой платформы на NestJS/MongoDB, построенной на <strong>гексагональной архитектуре</strong> - доменные сущности без знания о персистентности, узкие read/write-порты вместо монолитного репозитория, и гибридная система доставки событий для eventual consistency между агрегатами. Умею диагностировать продовые инциденты до первопричины и доставлять фикс в реальных условиях (особенности легаси-схем, лимиты сторонних API, хранилища с одним writer'ом). Активно развиваюсь в <strong>Go</strong> для self-hosted API-first сервисов и углубляюсь в <strong>Rust</strong> через pet-проекты. В поиске backend-роли в <strong>ЕС</strong> с поддержкой релокации.</p>
     </section>
 
     <section>
@@ -336,14 +349,6 @@
           <span class="tag">BullMQ / Redis</span>
           <span class="tag">Playwright/CDP-автоматизация</span>
           <span class="tag">WebSockets</span>
-        </dd>
-        <dt>Go stack</dt>
-        <dd class="tags">
-          <span class="tag">chi</span>
-          <span class="tag">database/sql</span>
-          <span class="tag">slog</span>
-          <span class="tag">Планировщики</span>
-          <span class="tag">Graceful shutdown</span>
         </dd>
         <dt>Frontend</dt>
         <dd class="tags">
@@ -377,37 +382,37 @@
       <div class="job">
         <div class="job-head">
           <h3 class="job-title">Full-Stack инженер, <span class="company">Comrade Digital Marketing Agency</span></h3>
-          <span class="job-meta">Март 2023 — настоящее время</span>
+          <span class="job-meta">Март 2023 - настоящее время</span>
         </div>
         <p class="job-sub">Удалённо</p>
 
         <div class="job-block">
-          <h4 class="job-block-title">Платформа для link-building / мониторинга бэклинков <span class="block-stack">(NestJS + MongoDB, pnpm-монорепозиторий)</span> — <span class="block-role">единственный архитектор и основной автор</span></h4>
+          <h4 class="job-block-title">Платформа для link-building / мониторинга бэклинков <span class="block-stack">(NestJS + MongoDB, pnpm-монорепозиторий)</span> - <span class="block-role">единственный архитектор и основной автор</span></h4>
           <ul class="bullets">
-            <li>Спроектировал <strong>гексагональную архитектуру</strong> с нуля: доменные сущности без знания о персистентности, инварианты закреплены в конструкторах и покрыты юнит-тестами без базы данных, плюс узкие read/write-порты на домен вместо одного толстого репозитория — дашборды и отчёты получают денормализованные, query-оптимизированные данные, не затрагивая write-side инварианты.</li>
+            <li>Спроектировал <strong>гексагональную архитектуру</strong> с нуля: доменные сущности без знания о персистентности, инварианты закреплены в конструкторах и покрыты юнит-тестами без базы данных, плюс узкие read/write-порты на домен вместо одного толстого репозитория - дашборды и отчёты получают денормализованные, query-оптимизированные данные, не затрагивая write-side инварианты.</li>
             <li>Построил <strong>гибридную систему доставки событий</strong> (change-stream watch + polling fallback с lease-based захватом) для eventual consistency между агрегатами, сохраняя каждое событие как outbox для воспроизведения инцидента из журнала событий, а не восстановления по логам.</li>
-            <li>Диагностировал регрессию bulk-записи (40с на ~1150 строк) как <strong>отсутствующий индекс</strong>, а не архитектурное узкое место — до того как команда согласилась на многодневный рефакторинг с разделением очередей; реальный фикс сократил время записи до &lt;1с.</li>
-            <li>Переработал bulk-запись скрейпинга на 30 тыс. строк, которая молча зависала на 7–21 минуту без ретраев, в <strong>чанкованные идемпотентные upsert-батчи</strong> с таймаутами на чанк и ретраем на уровне очереди.</li>
+            <li>Диагностировал регрессию bulk-записи (40с на ~1150 строк) как <strong>отсутствующий индекс</strong>, а не архитектурное узкое место - до того как команда согласилась на многодневный рефакторинг с разделением очередей; реальный фикс сократил время записи до &lt;1с.</li>
+            <li>Переработал bulk-запись скрейпинга на 30 тыс. строк, которая молча зависала на 7-21 минуту без ретраев, в <strong>чанкованные идемпотентные upsert-батчи</strong> с таймаутами на чанк и ретраем на уровне очереди.</li>
             <li>Реализовал <strong>FIFO-семафор</strong>, ограничивающий доступ к общему пулу browser context'ов для 14 параллельных скрейпинг-воркеров, вместе со случайными паузами взаимодействия, чтобы повторные запросы не читались антибот-системами как бот.</li>
-            <li>Поддерживаю три отдельных сервиса с персистентной сессией <strong>браузерной автоматизации</strong> вместо одного универсального скрейпера — каждый со своим headful Chrome-сайдкаром (Xvfb + noVNC), в который оператор логинится один раз; сессия держится живой через адаптивный auth-health prober и постоянную имитацию активности мыши/скролла — защита именно от тихого разлогина или флага «неактивной» сессии, а не от объёма запросов.</li>
-            <li>Спроектировал <strong>AI-augmented pipeline</strong> для извлечения данных: правила по каждой площадке лежат в data-driven каталоге, а не хардкодятся, и питают составной, cache-friendly промпт, который один раз на шаблон страницы находит стабильный CSS-селектор — дальше переиспользуется без единого нового вызова AI, подтверждено на практике: 5/5 полей из кэша на втором аккаунте.</li>
+            <li>Поддерживаю три отдельных сервиса с персистентной сессией <strong>браузерной автоматизации</strong> вместо одного универсального скрейпера - каждый со своим headful Chrome-сайдкаром (Xvfb + noVNC), в который оператор логинится один раз; сессия держится живой через адаптивный auth-health prober и постоянную имитацию активности мыши/скролла - защита именно от тихого разлогина или флага «неактивной» сессии, а не от объёма запросов.</li>
+            <li>Спроектировал <strong>AI-augmented pipeline</strong> для извлечения данных: правила по каждой площадке лежат в data-driven каталоге, а не хардкодятся, и питают составной, cache-friendly промпт, который один раз на шаблон страницы находит стабильный CSS-селектор - дальше переиспользуется без единого нового вызова AI, подтверждено на практике: 5/5 полей из кэша на втором аккаунте.</li>
           </ul>
         </div>
 
         <div class="job-block">
-          <h4 class="job-block-title">Инструмент редакторского workflow <span class="block-stack">(NestJS + MongoDB)</span> — <span class="block-role">ведущий контрибьютор, автор-основатель</span></h4>
+          <h4 class="job-block-title">Инструмент редакторского workflow <span class="block-stack">(NestJS + MongoDB)</span> - <span class="block-role">ведущий контрибьютор, автор-основатель</span></h4>
           <ul class="bullets">
-            <li>Нашёл первопричину двух продовых инцидентов в fire-and-forget доставке вебхуков (гонка данных и молчаливая потеря сообщения), затем спроектировал <strong>transactional outbox</strong> — атомарный статус-флаг, lease-based polling fallback, backoff с джиттером, dead-lettering.</li>
-            <li>Нашёл путь bulk-approve, который обходил новый outbox целиком, молча пропуская уведомления — исправил транзакционным снапшоттингом в том же query-пути вместо дублирования outbox-логики.</li>
+            <li>Нашёл первопричину двух продовых инцидентов в fire-and-forget доставке вебхуков (гонка данных и молчаливая потеря сообщения), затем спроектировал <strong>transactional outbox</strong> - атомарный статус-флаг, lease-based polling fallback, backoff с джиттером, dead-lettering.</li>
+            <li>Нашёл путь bulk-approve, который обходил новый outbox целиком, молча пропуская уведомления - исправил транзакционным снапшоттингом в том же query-пути вместо дублирования outbox-логики.</li>
             <li>Реализовал соответствующую фичу на Angular (server-side row model гриды) end-to-end поверх этого бэкенда.</li>
           </ul>
         </div>
 
         <div class="job-block">
-          <h4 class="job-block-title">Общая frontend-платформа <span class="block-stack">(Angular)</span> — <span class="block-role">контрибьютор в отдельных модулях</span></h4>
+          <h4 class="job-block-title">Общая frontend-платформа <span class="block-stack">(Angular)</span> - <span class="block-role">контрибьютор в отдельных модулях</span></h4>
           <ul class="bullets">
-            <li>Построил real-time <strong>WebSocket-слой</strong> для набора функций совместного редактирования — от первой реализации до последующей миграции и выравнивания event-схемы с бэкендом.</li>
-            <li>Адаптировал существующий <strong>undo/redo-движок</strong> под второй домен данных через generic adapter-интерфейс, не трогая ядро движка — включая обработку TTL soft-delete edge case, который иначе мог тихо ломать восстановление.</li>
+            <li>Построил real-time <strong>WebSocket-слой</strong> для набора функций совместного редактирования - от первой реализации до последующей миграции и выравнивания event-схемы с бэкендом.</li>
+            <li>Адаптировал существующий <strong>undo/redo-движок</strong> под второй домен данных через generic adapter-интерфейс, не трогая ядро движка - включая обработку TTL soft-delete edge case, который иначе мог тихо ломать восстановление.</li>
           </ul>
         </div>
 
@@ -417,7 +422,7 @@
       <div class="job">
         <div class="job-head">
           <h3 class="job-title">Разработчик ПО (IT), <span class="company">Волгоградский государственный технический университет</span></h3>
-          <span class="job-meta">2020 — 2023</span>
+          <span class="job-meta">2020 - 2023</span>
         </div>
         <p class="job-sub">Волгоград, Россия</p>
         <ul class="bullets">
@@ -437,7 +442,7 @@
           <span class="proj-stack">Go · в разработке</span>
           <a class="proj-link" href="https://github.com/vdzhagaev/watchlight">github.com/vdzhagaev/watchlight</a>
         </div>
-        <p>Сервис мониторинга аптайма, написанный соло. Разделил scheduler на три канала с разной семантикой backpressure (ограниченные буферы job/result, небуферизованная сигнализация) вместо одной общей очереди, подобрал фиксированный пул воркеров и сериализовал все записи в SQLite через единственного consumer'а — из-за ограничения «один writer даже в WAL». Graceful shutdown вытекает работающие задачи через ступенчатую последовательность отмены, прежде чем жёсткий таймаут форсирует завершение. Миграции, метрики и нагрузочное тестирование — в процессе.</p>
+        <p>Сервис мониторинга аптайма, написанный соло. Разделил scheduler на три канала с разной семантикой backpressure (ограниченные буферы job/result, небуферизованная сигнализация) вместо одной общей очереди, подобрал фиксированный пул воркеров и сериализовал все записи в SQLite через единственного consumer'а - из-за ограничения «один writer даже в WAL». Graceful shutdown вытекает работающие задачи через ступенчатую последовательность отмены, прежде чем жёсткий таймаут форсирует завершение. Миграции, метрики и нагрузочное тестирование - в процессе.</p>
       </div>
 
       <div class="proj">
@@ -446,7 +451,7 @@
           <span class="proj-stack">Tauri · Rust · Бета</span>
           <a class="proj-link" href="https://github.com/vdzhagaev/pokeroll">github.com/vdzhagaev/pokeroll</a>
         </div>
-        <p>Кроссплатформенный десктоп-виджет (Tauri 2, SvelteKit + Rust), который выбирает случайного покемона из PokéAPI и рендерит карточку с сохранённым локальным прогрессом. Выпущен как публичная бета со сборками под Windows/macOS/Linux — самый законченный проект на сегодняшний день.</p>
+        <p>Кроссплатформенный десктоп-виджет (Tauri 2, SvelteKit + Rust), который выбирает случайного покемона из PokéAPI и рендерит карточку с сохранённым локальным прогрессом. Выпущен как публичная бета со сборками под Windows/macOS/Linux - самый законченный проект на сегодняшний день.</p>
       </div>
     </section>
 
@@ -455,12 +460,12 @@
         <div>
           <h2 class="eyebrow">Образование</h2>
           <div class="item">
-            <div class="deg">Магистратура — Информационные системы и технологии (09.04.02)</div>
-            <div class="deg-sub">Волгоградский государственный технический университет · 2023–2026</div>
+            <div class="deg">Магистратура - Информационные системы и технологии (09.04.02)</div>
+            <div class="deg-sub">Волгоградский государственный технический университет · 2023-2026</div>
           </div>
           <div class="item">
-            <div class="deg">Бакалавриат — Информационные системы и технологии (09.03.02)</div>
-            <div class="deg-sub">Волгоградский государственный технический университет · 2019–2023</div>
+            <div class="deg">Бакалавриат - Информационные системы и технологии (09.03.02)</div>
+            <div class="deg-sub">Волгоградский государственный технический университет · 2019-2023</div>
           </div>
         </div>
         <div>

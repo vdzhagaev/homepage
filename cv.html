@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vyacheslav Dzhagaev — Backend Engineer CV</title>
+<title>Vyacheslav Dzhagaev - Backend Engineer CV</title>
 <style>
   :root {
     --paper: #fbfbfa;
@@ -266,7 +266,7 @@
     body { font-size: 10.5pt; }
     .sheet { max-width: none; padding: 0; }
     section { margin-top: 20px; }
-    .job, .proj, .job-block { page-break-inside: avoid; }
+    .proj { page-break-inside: avoid; }
     a { border: none !important; }
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     /* Single-column skills list in print/PDF: a two-column dt/dd grid can
@@ -276,6 +276,19 @@
     /* Same reasoning: Education/Languages sit side by side on screen, but
        interleave line by line in the PDF text layer if left as two columns. */
     .tail { grid-template-columns: 1fr; gap: 20px; }
+    /* flex-wrap has the same failure mode as grid columns: once the
+       contact list or a tag group wraps onto more than one visual line,
+       the PDF text layer follows that visual wrapping instead of DOM
+       order. Collapse both to a single plain-text run per line/group. */
+    .contact { display: block; }
+    .contact li { display: inline; }
+    .contact li:not(:last-child)::after { content: "  ·  "; }
+    .contact .dot { display: none; }
+    .tags .tag {
+      background: none; border: none; padding: 0; border-radius: 0;
+      font-size: inherit; font-family: inherit; color: inherit;
+    }
+    .tags .tag:not(:last-child)::after { content: ", "; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
@@ -310,7 +323,7 @@
 
     <section>
       <h2 class="eyebrow">Summary</h2>
-      <p class="summary">Backend engineer with <strong>3+ years of commercial experience</strong>, <strong>sole architect</strong> of a production NestJS/MongoDB platform built on <strong>hexagonal architecture</strong> — domain entities free of persistence concerns, narrow purpose-built read/write ports instead of a monolithic repository layer, and a hybrid event-dispatch system for eventual consistency between aggregates. Comfortable diagnosing production incidents down to root cause and shipping the fix under real constraints (legacy schema quirks, rate-limited third-party APIs, single-writer storage engines). Actively specialising in <strong>Go</strong> for self-hosted, API-first services, and going deeper into <strong>Rust</strong> through hobby projects. Looking for a backend role in the <strong>EU</strong> with relocation support.</p>
+      <p class="summary">Backend engineer with <strong>3+ years of commercial experience</strong>, <strong>sole architect</strong> of a production NestJS/MongoDB platform built on <strong>hexagonal architecture</strong> - domain entities free of persistence concerns, narrow purpose-built read/write ports instead of a monolithic repository layer, and a hybrid event-dispatch system for eventual consistency between aggregates. Comfortable diagnosing production incidents down to root cause and shipping the fix under real constraints (legacy schema quirks, rate-limited third-party APIs, single-writer storage engines). Actively specialising in <strong>Go</strong> for self-hosted, API-first services, and going deeper into <strong>Rust</strong> through hobby projects. Looking for a backend role in the <strong>EU</strong> with relocation support.</p>
     </section>
 
     <section>
@@ -336,14 +349,6 @@
           <span class="tag">BullMQ / Redis</span>
           <span class="tag">Playwright/CDP automation</span>
           <span class="tag">WebSockets</span>
-        </dd>
-        <dt>Go stack</dt>
-        <dd class="tags">
-          <span class="tag">chi</span>
-          <span class="tag">database/sql</span>
-          <span class="tag">slog</span>
-          <span class="tag">Schedulers</span>
-          <span class="tag">Graceful shutdown</span>
         </dd>
         <dt>Frontend</dt>
         <dd class="tags">
@@ -377,34 +382,34 @@
       <div class="job">
         <div class="job-head">
           <h3 class="job-title">Full-Stack Engineer, <span class="company">Comrade Digital Marketing Agency</span></h3>
-          <span class="job-meta">Mar 2023 — Present</span>
+          <span class="job-meta">Mar 2023 - Present</span>
         </div>
         <p class="job-sub">Remote</p>
 
         <div class="job-block">
-          <h4 class="job-block-title">Link-building / backlink-monitoring platform <span class="block-stack">(NestJS + MongoDB, pnpm monorepo)</span> — <span class="block-role">sole architect and primary author</span></h4>
+          <h4 class="job-block-title">Link-building / backlink-monitoring platform <span class="block-stack">(NestJS + MongoDB, pnpm monorepo)</span> - <span class="block-role">sole architect and primary author</span></h4>
           <ul class="bullets">
-            <li>Designed the <strong>hexagonal architecture</strong> from scratch: domain entities with no persistence concerns, unit-tested without a database, plus narrow read/write ports per domain instead of one fat repository — dashboards and reports get denormalized, query-optimized data without touching write-side invariants.</li>
+            <li>Designed the <strong>hexagonal architecture</strong> from scratch: domain entities with no persistence concerns, unit-tested without a database, plus narrow read/write ports per domain instead of one fat repository - dashboards and reports get denormalized, query-optimized data without touching write-side invariants.</li>
             <li>Built a <strong>hybrid event-dispatch system</strong> (change-stream watch + polling fallback with lease-based claiming) for eventual consistency between aggregates, storing every event as a replayable outbox.</li>
-            <li>Diagnosed a bulk-persist regression (40s for ~1,150 rows) as a <strong>missing index</strong>, not an architecture problem, before a multi-day queue-split was greenlit — the real fix cut write time to under 1 second.</li>
-            <li>Redesigned a 30K-row scraping bulk-write that silently hung 7–21 minutes with no retries into <strong>chunked, idempotent upsert batches</strong> with per-chunk timeouts and queue-level retry.</li>
+            <li>Diagnosed a bulk-persist regression (40s for ~1,150 rows) as a <strong>missing index</strong>, not an architecture problem, before a multi-day queue-split was greenlit - the real fix cut write time to under 1 second.</li>
+            <li>Redesigned a 30K-row scraping bulk-write that silently hung 7-21 minutes with no retries into <strong>chunked, idempotent upsert batches</strong> with per-chunk timeouts and queue-level retry.</li>
             <li>Implemented a <strong>FIFO semaphore</strong> gating a shared pool of browser contexts across 14 concurrent scraping workers, paired with randomized interaction pacing so repeat requests don't read as a bot to anti-automation systems.</li>
-            <li>Run three separate persistent-session browser-automation services rather than one generic scraper, each behind its own <strong>headful Chrome</strong> sidecar (Xvfb + noVNC) that an operator authenticates once, kept alive via an adaptive auth-health prober and continuous ambient mouse/scroll simulation — defending against a silently logged-out or flagged-idle session, not request volume.</li>
-            <li>Engineered an <strong>AI-augmented extraction pipeline</strong>: per-platform field rules live in a data-driven catalog, not hardcoded, and feed a composable, cache-friendly prompt that discovers a stable CSS selector once per page template — reused with zero further AI calls, proven at 5/5 fields from cache on a second account.</li>
+            <li>Run three separate persistent-session browser-automation services rather than one generic scraper, each behind its own <strong>headful Chrome</strong> sidecar (Xvfb + noVNC) that an operator authenticates once, kept alive via an adaptive auth-health prober and continuous ambient mouse/scroll simulation - defending against a silently logged-out or flagged-idle session, not request volume.</li>
+            <li>Engineered an <strong>AI-augmented extraction pipeline</strong>: per-platform field rules live in a data-driven catalog, not hardcoded, and feed a composable, cache-friendly prompt that discovers a stable CSS selector once per page template - reused with zero further AI calls, proven at 5/5 fields from cache on a second account.</li>
           </ul>
         </div>
 
         <div class="job-block">
-          <h4 class="job-block-title">Editorial workflow tool <span class="block-stack">(NestJS + MongoDB)</span> — <span class="block-role">lead contributor, founding author</span></h4>
+          <h4 class="job-block-title">Editorial workflow tool <span class="block-stack">(NestJS + MongoDB)</span> - <span class="block-role">lead contributor, founding author</span></h4>
           <ul class="bullets">
-            <li>Root-caused two production incidents to fire-and-forget webhook delivery (a data race and a silent message loss), then designed a <strong>transactional outbox</strong> — atomic status flag, lease-based polling fallback, backoff with jitter, dead-lettering.</li>
-            <li>Found a bulk-approval path that bypassed the new outbox entirely, silently skipping notifications — fixed with transactional snapshotting on the same query path instead of duplicating outbox logic.</li>
+            <li>Root-caused two production incidents to fire-and-forget webhook delivery (a data race and a silent message loss), then designed a <strong>transactional outbox</strong> - atomic status flag, lease-based polling fallback, backoff with jitter, dead-lettering.</li>
+            <li>Found a bulk-approval path that bypassed the new outbox entirely, silently skipping notifications - fixed with transactional snapshotting on the same query path instead of duplicating outbox logic.</li>
             <li>Delivered the matching Angular feature (server-side row model grids) end-to-end on top of this backend.</li>
           </ul>
         </div>
 
         <div class="job-block">
-          <h4 class="job-block-title">Shared frontend platform <span class="block-stack">(Angular)</span> — <span class="block-role">contributor to specific modules</span></h4>
+          <h4 class="job-block-title">Shared frontend platform <span class="block-stack">(Angular)</span> - <span class="block-role">contributor to specific modules</span></h4>
           <ul class="bullets">
             <li>Built the real-time <strong>WebSocket layer</strong> for a set of collaborative-editing features, through a later migration and event-schema alignment with the backend.</li>
             <li>Adapted an existing <strong>undo/redo engine</strong> to a second data domain via a generic adapter interface without touching the engine's core, including a TTL soft-delete edge case that could otherwise silently corrupt restores.</li>
@@ -417,7 +422,7 @@
       <div class="job">
         <div class="job-head">
           <h3 class="job-title">Software Developer (IT), <span class="company">Volgograd State Technical University</span></h3>
-          <span class="job-meta">2020 — 2023</span>
+          <span class="job-meta">2020 - 2023</span>
         </div>
         <p class="job-sub">Volgograd, Russia</p>
         <ul class="bullets">
@@ -446,7 +451,7 @@
           <span class="proj-stack">Tauri · Rust · Beta</span>
           <a class="proj-link" href="https://github.com/vdzhagaev/pokeroll">github.com/vdzhagaev/pokeroll</a>
         </div>
-        <p>Cross-platform desktop widget (Tauri 2, SvelteKit + Rust) that rolls a random Pokémon from PokéAPI and renders it as a card with persisted local progress. Shipped as a public beta with builds for Windows/macOS/Linux — most complete shipped project so far.</p>
+        <p>Cross-platform desktop widget (Tauri 2, SvelteKit + Rust) that rolls a random Pokémon from PokéAPI and renders it as a card with persisted local progress. Shipped as a public beta with builds for Windows/macOS/Linux - most complete shipped project so far.</p>
       </div>
     </section>
 
@@ -455,12 +460,12 @@
         <div>
           <h2 class="eyebrow">Education</h2>
           <div class="item">
-            <div class="deg">M.Sc. — Information Systems &amp; Technologies (09.04.02)</div>
-            <div class="deg-sub">Volgograd State Technical University · 2023–2026</div>
+            <div class="deg">M.Sc. - Information Systems &amp; Technologies (09.04.02)</div>
+            <div class="deg-sub">Volgograd State Technical University · 2023-2026</div>
           </div>
           <div class="item">
-            <div class="deg">B.Sc. — Information Systems &amp; Technologies (09.03.02)</div>
-            <div class="deg-sub">Volgograd State Technical University · 2019–2023</div>
+            <div class="deg">B.Sc. - Information Systems &amp; Technologies (09.03.02)</div>
+            <div class="deg-sub">Volgograd State Technical University · 2019-2023</div>
           </div>
         </div>
         <div>
